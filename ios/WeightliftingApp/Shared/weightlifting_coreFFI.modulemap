@@ -1,0 +1,4 @@
+module weightlifting_coreFFI {
+    header "weightlifting_coreFFI.h"
+    export *
+}

@@ -1,0 +1,44 @@
+namespace weightlifting_core {
+  // Initialize logging for the library
+  void initialize_logging();
+
+  // Create repositories - these functions return Arc<ExerciseRepository>
+  [Throws=WeightliftingError]
+  ExerciseRepository create_exercise_repository(string db_path);
+
+  [Throws=WeightliftingError]
+  ExerciseRepository create_in_memory_repository();
+};
+
+// Custom error types
+[Error]
+interface WeightliftingError {
+  DatabaseError(string message);
+  ExerciseNotFound(string id);
+  InvalidInput(string message);
+};
+
+// Exercise model
+dictionary Exercise {
+  string id;
+  string name;
+  string? description;
+  sequence<string> muscle_groups;
+  string? equipment_needed;
+  u8 difficulty_level;
+};
+
+// Repository interface - no constructor since we use factory functions
+interface ExerciseRepository {
+  [Throws=WeightliftingError]
+  void add_exercise(Exercise exercise);
+
+  [Throws=WeightliftingError]
+  Exercise get_exercise(string id);
+
+  [Throws=WeightliftingError]
+  sequence<Exercise> get_all_exercises();
+
+  [Throws=WeightliftingError]
+  boolean delete_exercise(string id);
+};
