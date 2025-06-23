@@ -4,7 +4,7 @@
 //
 //  Created by Ross Harrison on 6/21/25.
 //
-
+    
 import XCTest
 import os.log
 @testable import WeightliftingApp

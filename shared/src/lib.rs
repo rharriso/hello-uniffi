@@ -8,7 +8,7 @@ pub mod error;
 use models::Exercise;
 use repository::ExerciseRepository;
 use error::WeightliftingError;
-use log::{info, debug, warn};
+use log::{info, warn};
 use std::sync::{Arc, Once};
 
 // UniFFI setup
