@@ -104,6 +104,10 @@ build-release: ## Build release versions for all platforms
 clean: ## Clean all build artifacts
 	@echo "$(BLUE)🧹 Cleaning build artifacts...$(RESET)"
 	cd shared && make clean
+	@echo "$(BLUE)🧹 Cleaning iOS project...$(RESET)"
+	cd ios && xcodebuild clean \
+		-project WeightliftingApp/WeightliftingApp.xcodeproj \
+		-scheme WeightliftingApp || echo "$(YELLOW)⚠️  iOS project clean skipped (project may not be configured)$(RESET)"
 	@echo "$(GREEN)✅ Clean completed!$(RESET)"
 
 .PHONY: dev
