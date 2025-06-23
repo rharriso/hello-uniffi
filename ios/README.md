@@ -40,24 +40,31 @@ ios/
 
 ### Building and Running
 
-1. **Run the build script** (from project root):
+1. **Generate bindings and library** (from project root):
    ```bash
-   ./ios/build.sh
+   make setup      # Install dependencies and iOS targets
+   make bindings   # Generate Swift bindings + iOS library
    ```
 
-   This script will:
-   - Build the Rust shared library
-   - Generate Swift FFI bindings
-   - Copy the static library
-   - Build the iOS project (if Xcode CLI tools available)
-   - Run the test suite
+2. **Configure Xcode manually** (one-time setup):
+   - Open Xcode: `open ios/WeightliftingApp/WeightliftingApp.xcodeproj`
+   - Follow the manual configuration steps in [INTEGRATION_GUIDE.md](INTEGRATION_GUIDE.md)
+   - This includes adding the Shared folder, setting up the bridging header, and configuring build settings
 
-2. **Open in Xcode**:
+3. **Build and test**:
    ```bash
-   open ios/WeightliftingApp/WeightliftingApp.xcodeproj
+   make test-ios   # Run iOS tests
+   make build-ios  # Build iOS project
    ```
 
-3. **Select a simulator** (iPhone 15 recommended) and run the project
+### ⚠️ Important: Manual Xcode Configuration Required
+
+The iOS project **requires manual Xcode configuration** because:
+- **Bridging headers** need to be set in build settings
+- **Shared folder** must be added to both app and test targets correctly
+- **Build settings** need specific paths for FFI integration
+
+See [INTEGRATION_GUIDE.md](INTEGRATION_GUIDE.md) for complete step-by-step instructions.
 
 ## 🧪 Testing
 
@@ -96,15 +103,20 @@ The main app provides an interactive demonstration:
 If you modify the Rust library, regenerate bindings:
 
 ```bash
-# From project root
-cd shared && cargo build --release
-uniffi-bindgen generate shared/src/weightlifting_core.udl --language swift --out-dir ios/WeightliftingApp/Shared/
-cp shared/target/release/libweightlifting_core.a ios/WeightliftingApp/Shared/
+# From project root - recommended approach
+make bindings   # Generates Swift bindings + iOS simulator library
+
+# Or manually from shared/ directory
+cd shared
+make ios-bindings   # Builds library and copies to iOS project
 ```
 
-Or simply run the build script:
+### Alternative Manual Rebuild
 ```bash
-./ios/build.sh
+cd shared
+cargo build --release --target aarch64-apple-ios-sim
+uniffi-bindgen generate src/weightlifting_core.udl --language swift --out-dir ../ios/WeightliftingApp/Shared/
+cp target/aarch64-apple-ios-sim/release/libweightlifting_core.a ../ios/WeightliftingApp/Shared/
 ```
 
 ### Project Configuration

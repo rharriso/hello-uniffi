@@ -1,178 +1,138 @@
-# Weightlifting Core - Root Makefile
-# Provides convenient targets for building and testing across all platforms
-
-.PHONY: help test test-rust test-ios build build-rust build-ios clean clean-rust clean-ios setup bindings
-
+# Weightlifting Core - Root Build System
 # Colors for output
-BOLD := \033[1m
-RED := \033[31m
-GREEN := \033[32m
-YELLOW := \033[33m
-BLUE := \033[34m
-RESET := \033[0m
+RED=\033[0;31m
+GREEN=\033[0;32m
+YELLOW=\033[1;33m
+BLUE=\033[0;34m
+RESET=\033[0m
 
-# Default target
+.DEFAULT_GOAL := help
+
+# Help target
+.PHONY: help
 help: ## Show this help message
-	@echo "$(BOLD)🏋️  Weightlifting Core - Cross-Platform Build System$(RESET)"
+	@echo "$(BLUE)🏋️ Weightlifting Core - Build System$(RESET)"
 	@echo ""
-	@echo "$(BOLD)Available targets:$(RESET)"
-	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "  $(BLUE)%-15s$(RESET) %s\n", $$1, $$2}'
+	@echo "$(GREEN)Available targets:$(RESET)"
+	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "  $(BLUE)%-20s$(RESET) %s\n", $$1, $$2}' $(MAKEFILE_LIST)
 	@echo ""
-	@echo "$(BOLD)Examples:$(RESET)"
-	@echo "  make test          # Run all tests (Rust + iOS)"
-	@echo "  make test-rust     # Run only Rust tests"
-	@echo "  make build         # Build all projects"
-	@echo "  make setup         # Initial project setup"
+	@echo "$(YELLOW)iOS Workflow:$(RESET)"
+	@echo "  1. $(BLUE)make setup$(RESET)     - Install dependencies"
+	@echo "  2. $(BLUE)make ios-bindings$(RESET) - Generate iOS bindings"
+	@echo "  3. Configure Xcode manually (see ios/INTEGRATION_GUIDE.md)"
+	@echo "  4. $(BLUE)make test-ios$(RESET)  - Run iOS tests"
 
-# Test targets
-test: test-rust test-ios ## Run all tests (Rust + iOS)
-	@echo "$(GREEN)✅ All tests completed successfully!$(RESET)"
-
-test-rust: ## Run Rust tests in shared library
-	@echo "$(BLUE)🦀 Running Rust tests...$(RESET)"
-	@cd shared && cargo test
-	@echo "$(GREEN)✅ Rust tests passed!$(RESET)"
-
-test-ios: ## Run iOS tests (requires Xcode)
-	@echo "$(BLUE)📱 Running iOS tests...$(RESET)"
-	@if command -v xcodebuild >/dev/null 2>&1; then \
-		cd ios && xcodebuild test \
-			-project WeightliftingApp/WeightliftingApp.xcodeproj \
-			-scheme WeightliftingApp \
-			-destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' \
-			CODE_SIGNING_ALLOWED=NO || true; \
-		echo "$(GREEN)✅ iOS tests completed!$(RESET)"; \
-	else \
-		echo "$(YELLOW)⚠️  xcodebuild not available, skipping iOS tests$(RESET)"; \
-		echo "$(BLUE)💡 Install Xcode Command Line Tools to run iOS tests$(RESET)"; \
-	fi
-
-# Build targets
-build: build-rust build-ios ## Build all projects
-	@echo "$(GREEN)✅ All builds completed successfully!$(RESET)"
-
-build-rust: ## Build Rust shared library
-	@echo "$(BLUE)🔨 Building Rust shared library...$(RESET)"
-	@cd shared && cargo build --release
-	@echo "$(GREEN)✅ Rust library built successfully!$(RESET)"
-
-build-ios: bindings ## Build iOS project (requires Xcode)
-	@echo "$(BLUE)📱 Building iOS project...$(RESET)"
-	@if command -v xcodebuild >/dev/null 2>&1; then \
-		cd ios && xcodebuild build \
-			-project WeightliftingApp/WeightliftingApp.xcodeproj \
-			-scheme WeightliftingApp \
-			-destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' \
-			CODE_SIGNING_ALLOWED=NO || true; \
-		echo "$(GREEN)✅ iOS project built successfully!$(RESET)"; \
-	else \
-		echo "$(YELLOW)⚠️  xcodebuild not available, skipping iOS build$(RESET)"; \
-		echo "$(BLUE)💡 Install Xcode Command Line Tools to build iOS project$(RESET)"; \
-	fi
-
-# Setup and utility targets
-setup: ## Initial project setup (install dependencies)
+# Setup and installation
+.PHONY: setup
+setup: ## Install development dependencies and Rust targets
 	@echo "$(BLUE)🔧 Setting up development environment...$(RESET)"
-	@echo "$(BLUE)📦 Installing uniffi-bindgen...$(RESET)"
-	@pip3 install uniffi-bindgen || echo "$(YELLOW)⚠️  Could not install uniffi-bindgen via pip3$(RESET)"
-	@echo "$(BLUE)🦀 Checking Rust installation...$(RESET)"
-	@rustc --version || (echo "$(RED)❌ Rust not installed. Install from https://rustup.rs/$(RESET)" && exit 1)
+	cd shared && make setup
 	@echo "$(GREEN)✅ Development environment ready!$(RESET)"
 
-bindings: build-rust ## Generate Swift bindings from Rust library
-	@echo "$(BLUE)🔗 Generating Swift bindings...$(RESET)"
-	@mkdir -p ios/WeightliftingApp/Shared
-	@if command -v uniffi-bindgen >/dev/null 2>&1; then \
-		uniffi-bindgen generate shared/src/weightlifting_core.udl \
-			--language swift \
-			--out-dir ios/WeightliftingApp/Shared/; \
-		cp shared/target/release/libweightlifting_core.a ios/WeightliftingApp/Shared/ 2>/dev/null || \
-		cp shared/target/release/libweightlifting_core.dylib ios/WeightliftingApp/Shared/ 2>/dev/null || \
-		echo "$(YELLOW)⚠️  No compiled library found, run 'make build-rust' first$(RESET)"; \
-		echo "$(GREEN)✅ Swift bindings generated successfully!$(RESET)"; \
-	else \
-		echo "$(RED)❌ uniffi-bindgen not found. Run 'make setup' first$(RESET)"; \
-		exit 1; \
-	fi
+# iOS targets
+.PHONY: ios-bindings
+ios-bindings: ## Generate iOS bindings and copy to project
+	@echo "$(BLUE)🔗 Generating iOS bindings...$(RESET)"
+	cd shared && make ios-bindings
+	@echo "$(GREEN)✅ iOS bindings generated!$(RESET)"
 
-# Clean targets
-clean: clean-rust clean-ios ## Clean all build artifacts
-	@echo "$(GREEN)✅ All projects cleaned!$(RESET)"
+.PHONY: build-ios-release
+build-ios-release: ## Build iOS release libraries (device + simulator)
+	@echo "$(BLUE)🏗️ Building iOS release...$(RESET)"
+	cd shared && make build-ios-release
+	@echo "$(GREEN)✅ iOS release build completed!$(RESET)"
 
-clean-rust: ## Clean Rust build artifacts
-	@echo "$(BLUE)🧹 Cleaning Rust build artifacts...$(RESET)"
-	@cd shared && cargo clean
-	@echo "$(GREEN)✅ Rust artifacts cleaned!$(RESET)"
+.PHONY: build-ios-test
+build-ios-test: ## Build iOS for testing (debug, simulator only)
+	@echo "$(BLUE)🏗️ Building iOS for testing...$(RESET)"
+	cd shared && make build-ios-test
+	@echo "$(GREEN)✅ iOS test build completed!$(RESET)"
 
-clean-ios: ## Clean iOS build artifacts
-	@echo "$(BLUE)🧹 Cleaning iOS build artifacts...$(RESET)"
-	@if command -v xcodebuild >/dev/null 2>&1; then \
-		cd ios && xcodebuild clean \
-			-project WeightliftingApp/WeightliftingApp.xcodeproj \
-			-scheme WeightliftingApp 2>/dev/null || true; \
-	fi
-	@rm -rf ios/WeightliftingApp/Shared/weightlifting_core.swift 2>/dev/null || true
-	@rm -rf ios/WeightliftingApp/Shared/weightlifting_coreFFI.h 2>/dev/null || true
-	@rm -rf ios/WeightliftingApp/Shared/weightlifting_coreFFI.modulemap 2>/dev/null || true
-	@rm -rf ios/WeightliftingApp/Shared/libweightlifting_core.* 2>/dev/null || true
-	@echo "$(GREEN)✅ iOS artifacts cleaned!$(RESET)"
+# Android targets
+.PHONY: android-bindings
+android-bindings: ## Generate Android bindings
+	@echo "$(BLUE)🔗 Generating Android bindings...$(RESET)"
+	cd shared && make android-bindings
+	@echo "$(GREEN)✅ Android bindings generated!$(RESET)"
 
-# Development workflow targets
-dev: ## Complete development workflow (clean, build, test)
-	@echo "$(BOLD)🚀 Running complete development workflow...$(RESET)"
-	@$(MAKE) clean
-	@$(MAKE) build
-	@$(MAKE) test
-	@echo "$(GREEN)✅ Development workflow completed successfully!$(RESET)"
+.PHONY: build-android-release
+build-android-release: ## Build Android release libraries
+	@echo "$(BLUE)🏗️ Building Android release...$(RESET)"
+	cd shared && make build-android-release
+	@echo "$(GREEN)✅ Android release build completed!$(RESET)"
 
-watch-rust: ## Watch Rust files and run tests on changes (requires cargo-watch)
-	@echo "$(BLUE)👀 Watching Rust files for changes...$(RESET)"
-	@cd shared && cargo watch -x test
+.PHONY: build-android-test
+build-android-test: ## Build Android for testing
+	@echo "$(BLUE)🏗️ Building Android for testing...$(RESET)"
+	cd shared && make build-android-test
+	@echo "$(GREEN)✅ Android test build completed!$(RESET)"
 
-# Release targets
-release: ## Build optimized release versions
+# Test targets
+.PHONY: test
+test: test-rust test-ios ## Run all tests
+	@echo "$(GREEN)✅ All tests completed successfully!$(RESET)"
+
+.PHONY: test-rust
+test-rust: ## Run Rust tests
+	@echo "$(BLUE)🦀 Running Rust tests...$(RESET)"
+	cd shared && cargo test
+	@echo "$(GREEN)✅ Rust tests passed!$(RESET)"
+
+.PHONY: test-ios
+test-ios: ios-bindings ## Run iOS tests (requires manual Xcode configuration)
+	@echo "$(BLUE)📱 Running iOS tests...$(RESET)"
+	@echo "$(YELLOW)⚠️  IMPORTANT: Xcode project must be manually configured first!$(RESET)"
+	@echo "$(BLUE)📋 See ios/INTEGRATION_GUIDE.md for setup instructions$(RESET)"
+	cd ios && xcodebuild test \
+		-project WeightliftingApp/WeightliftingApp.xcodeproj \
+		-scheme WeightliftingApp \
+		-destination "platform=iOS Simulator,name=iPhone 16,OS=latest" \
+		CODE_SIGNING_ALLOWED=NO || \
+		echo "$(RED)❌ Tests failed - ensure Xcode project is configured per integration guide$(RESET)"
+	@echo "$(GREEN)✅ iOS tests completed!$(RESET)"
+
+# Build targets
+.PHONY: build-release
+build-release: ## Build release versions for all platforms
 	@echo "$(BLUE)🚀 Building release versions...$(RESET)"
-	@cd shared && cargo build --release
-	@$(MAKE) bindings
+	cd shared && make build-ios-release
+	cd shared && make build-android-release
 	@echo "$(GREEN)✅ Release builds completed!$(RESET)"
 
-# Documentation targets
-docs: ## Generate and open documentation
-	@echo "$(BLUE)📚 Generating documentation...$(RESET)"
-	@cd shared && cargo doc --open
+# Development and maintenance
+.PHONY: clean
+clean: ## Clean all build artifacts
+	@echo "$(BLUE)🧹 Cleaning build artifacts...$(RESET)"
+	cd shared && make clean
+	@echo "$(GREEN)✅ Clean completed!$(RESET)"
 
-# Status and info targets
-status: ## Show project status and information
-	@echo "$(BOLD)📊 Project Status$(RESET)"
-	@echo ""
-	@echo "$(BOLD)Rust Library (shared/):$(RESET)"
-	@cd shared && cargo --version
-	@cd shared && echo "  Dependencies: $$(grep -c '=' Cargo.toml) packages"
-	@cd shared && echo "  Source files: $$(find src -name '*.rs' | wc -l | tr -d ' ') files"
-	@echo ""
-	@echo "$(BOLD)iOS Project (ios/):$(RESET)"
-	@if command -v xcodebuild >/dev/null 2>&1; then \
-		echo "  Xcode: $$(xcodebuild -version | head -1)"; \
-		echo "  Project: WeightliftingApp.xcodeproj"; \
-	else \
-		echo "  Xcode: Not available"; \
-	fi
-	@echo "  Swift files: $$(find ios -name '*.swift' 2>/dev/null | wc -l | tr -d ' ') files"
-	@echo ""
-	@echo "$(BOLD)Build Artifacts:$(RESET)"
-	@if [ -f shared/target/release/libweightlifting_core.a ]; then \
-		echo "  ✅ Rust static library: $$(ls -lh shared/target/release/libweightlifting_core.a | awk '{print $$5}')"; \
-	else \
-		echo "  ❌ Rust static library: Not built"; \
-	fi
-	@if [ -f ios/WeightliftingApp/Shared/weightlifting_core.swift ]; then \
-		echo "  ✅ Swift bindings: Generated"; \
-	else \
-		echo "  ❌ Swift bindings: Not generated"; \
-	fi
+.PHONY: dev
+dev: ## Development build (debug mode)
+	@echo "$(BLUE)🔨 Building in development mode...$(RESET)"
+	cd shared && make dev
+	@echo "$(GREEN)✅ Development build completed!$(RESET)"
 
-# Quick aliases
-t: test          ## Alias for 'test'
-b: build         ## Alias for 'build'
-c: clean         ## Alias for 'clean'
-s: status        ## Alias for 'status'
+.PHONY: check
+check: ## Check code formatting and linting
+	@echo "$(BLUE)🔍 Checking code quality...$(RESET)"
+	cd shared && make check
+	@echo "$(GREEN)✅ Code quality checks passed!$(RESET)"
+
+.PHONY: fmt
+fmt: ## Format code
+	@echo "$(BLUE)✨ Formatting code...$(RESET)"
+	cd shared && make fmt
+	@echo "$(GREEN)✅ Code formatting completed!$(RESET)"
+
+# CI and comprehensive targets
+.PHONY: ci
+ci: ## Full CI pipeline
+	@echo "$(BLUE)🤖 Running full CI pipeline...$(RESET)"
+	cd shared && make ci
+	@echo "$(GREEN)✅ CI pipeline completed!$(RESET)"
+
+.PHONY: quick
+quick: ## Quick development cycle (test + dev build)
+	@echo "$(BLUE)⚡ Running quick development cycle...$(RESET)"
+	cd shared && make quick
+	@echo "$(GREEN)✅ Quick cycle completed!$(RESET)"

@@ -9,6 +9,7 @@ use log::{info, debug, warn, error};
 
 /// Exercise repository that manages SQLite database operations
 /// Uses connection pooling for thread safety and performance
+#[derive(Clone)]
 pub struct ExerciseRepository {
     pool: Arc<Pool<SqliteConnectionManager>>,
 }
@@ -171,67 +172,53 @@ impl ExerciseRepository {
     }
 
     /// Delete an exercise by ID
-    /// Returns true if an exercise was deleted, false if not found
+    /// Returns true if the exercise was deleted, false if it wasn't found
     pub fn delete_exercise(&self, id: String) -> Result<bool, WeightliftingError> {
         info!("🗑️ Deleting exercise with ID: {}", id);
 
-        let conn = self.pool.get().map_err(|e| {
-            error!("❌ Failed to get connection for delete_exercise: {}", e);
-            WeightliftingError::DatabaseError {
-                message: format!("Failed to get database connection: {}", e),
-            }
-        })?;
-
-        debug!("📊 Executing DELETE query for ID: {}", id);
+        let conn = self.pool.get()
+            .map_err(|e| WeightliftingError::DatabaseError {
+                message: format!("Failed to get connection: {}", e)
+            })?;
 
         let rows_affected = conn.execute(
             "DELETE FROM exercises WHERE id = ?1",
-            params![id],
-        ).map_err(|e| {
-            error!("❌ Failed to delete exercise '{}': {}", id, e);
-            WeightliftingError::DatabaseError {
-                message: format!("Failed to delete exercise: {}", e),
-            }
+            [&id],
+        ).map_err(|e| WeightliftingError::DatabaseError {
+            message: format!("Failed to delete exercise: {}", e)
         })?;
 
         let deleted = rows_affected > 0;
         if deleted {
-            info!("✅ Successfully deleted exercise with ID: {}", id);
+            info!("✅ Successfully deleted exercise: {}", id);
         } else {
-            warn!("⚠️ No exercise found to delete with ID: {}", id);
+            warn!("⚠️ Exercise not found for deletion: {}", id);
         }
 
         Ok(deleted)
     }
 
     /// Create a new repository with SQLite backend
-    /// Pass ":memory:" for in-memory database, or file path for persistent storage
     pub fn new(db_path: &str) -> Result<Arc<Self>, WeightliftingError> {
-        info!("🔧 Initializing ExerciseRepository with database: {}", db_path);
+        info!("🏗️ Initializing ExerciseRepository with database: {}", db_path);
 
         let manager = SqliteConnectionManager::file(db_path);
         let pool = Pool::new(manager)
-            .map_err(|e| {
-                error!("❌ Failed to create connection pool: {}", e);
-                WeightliftingError::DatabaseError {
-                    message: format!("Failed to create connection pool: {}", e),
-                }
+            .map_err(|e| WeightliftingError::DatabaseError {
+                message: format!("Failed to create connection pool: {}", e)
             })?;
 
-        debug!("📊 Connection pool created successfully");
+        let repo = Arc::new(ExerciseRepository { pool: Arc::new(pool) });
+        repo.initialize_database()?;
 
-        // Initialize database schema
-        let conn = pool.get().map_err(|e| {
-            error!("❌ Failed to get connection from pool: {}", e);
-            WeightliftingError::DatabaseError {
-                message: format!("Failed to get connection from pool: {}", e),
-            }
-        })?;
-
-        Self::create_table(&conn)?;
         info!("✅ ExerciseRepository initialized successfully");
+        Ok(repo)
+    }
 
-        Ok(Arc::new(Self { pool: Arc::new(pool) }))
+    /// Create a new in-memory repository for testing
+    pub fn new_in_memory() -> Result<Arc<Self>, WeightliftingError> {
+        info!("🧪 Creating in-memory repository for testing");
+        Self::new(":memory:")
     }
 
     /// Create the exercises table if it doesn't exist
@@ -256,6 +243,18 @@ impl ExerciseRepository {
         })?;
 
         debug!("✅ Exercises table ready");
+        Ok(())
+    }
+
+    fn initialize_database(&self) -> Result<(), WeightliftingError> {
+        let conn = self.pool.get().map_err(|e| {
+            error!("❌ Failed to get connection from pool: {}", e);
+            WeightliftingError::DatabaseError {
+                message: format!("Failed to get connection from pool: {}", e),
+            }
+        })?;
+
+        Self::create_table(&conn)?;
         Ok(())
     }
 }

@@ -66,7 +66,18 @@ make build-rust        # Build only Rust library
 make build-ios         # Build only iOS project
 ```
 
-### 3. Development Workflow
+### 3. iOS Setup (One-time Configuration)
+
+```bash
+# Generate bindings and iOS library
+make bindings          # Creates Swift bindings + iOS simulator library
+
+# Then configure Xcode manually (one-time setup)
+open ios/WeightliftingApp/WeightliftingApp.xcodeproj
+# Follow ios/INTEGRATION_GUIDE.md for manual configuration steps
+```
+
+### 4. Development Workflow
 
 ```bash
 # Complete development workflow
@@ -75,16 +86,16 @@ make status            # Show project status and build info
 make help              # See all available commands
 ```
 
-### 4. Alternative: Individual Project Commands
+### 5. Alternative: Individual Project Commands
 
 ```bash
 # Rust core library
 cd shared
 cargo test && cargo build --release
 
-# iOS project
-./ios/build.sh
-open ios/WeightliftingApp/WeightliftingApp.xcodeproj
+# iOS bindings and library
+make bindings          # Generate Swift bindings + iOS library
+# Note: Xcode project requires manual configuration (see ios/INTEGRATION_GUIDE.md)
 ```
 
 ## 🏗️ Architecture
@@ -121,9 +132,10 @@ impl ExerciseRepository {
 A complete SwiftUI app demonstrating the FFI integration:
 
 - **ContentView**: Interactive UI for testing core functionality
-- **Comprehensive Tests**: 15+ test cases covering all FFI operations
+- **Comprehensive Tests**: 12+ test cases covering all FFI operations
 - **Error Handling**: Proper Swift error propagation from Rust
 - **Performance Tests**: Measuring FFI call overhead
+- **Manual Configuration**: Requires one-time Xcode setup (bridging headers, build settings)
 
 ## 🧪 Testing Strategy
 
@@ -137,13 +149,14 @@ cd shared && cargo test
 
 ### iOS Integration Tests (`ios/`)
 ```bash
-./ios/build.sh  # Runs tests automatically
+make test-ios  # Runs tests (requires Xcode configuration first)
 ```
 - ✅ FFI binding correctness
 - ✅ Error propagation from Rust to Swift
 - ✅ Memory management across FFI boundary
 - ✅ Performance benchmarking
 - ✅ Complete workflow testing
+- ⚠️ Requires manual Xcode configuration (see `ios/INTEGRATION_GUIDE.md`)
 
 ## 🔧 Technical Implementation
 

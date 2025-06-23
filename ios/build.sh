@@ -82,13 +82,13 @@ if command -v xcodebuild &> /dev/null; then
     xcodebuild clean -project WeightliftingApp/WeightliftingApp.xcodeproj -scheme WeightliftingApp
 
     # Build for iOS Simulator (x86_64/arm64)
-    xcodebuild build -project WeightliftingApp/WeightliftingApp.xcodeproj -scheme WeightliftingApp -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.0' CODE_SIGNING_ALLOWED=NO
+    xcodebuild build -project WeightliftingApp/WeightliftingApp.xcodeproj -scheme WeightliftingApp -destination 'platform=iOS Simulator,name=iPhone 16,OS=17.0' CODE_SIGNING_ALLOWED=NO
 
     print_color $GREEN "✅ iOS project built successfully"
 
     # Run tests
     print_color $YELLOW "🧪 Running iOS tests..."
-    xcodebuild test -project WeightliftingApp/WeightliftingApp.xcodeproj -scheme WeightliftingApp -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.0' CODE_SIGNING_ALLOWED=NO
+    xcodebuild test -project WeightliftingApp/WeightliftingApp.xcodeproj -scheme WeightliftingApp -destination 'platform=iOS Simulator,name=iPhone 16,OS=17.0' CODE_SIGNING_ALLOWED=NO
 
     print_color $GREEN "✅ iOS tests completed successfully"
 else

@@ -1,8 +1,8 @@
 namespace weightlifting_core {
-  // Initialize logging for the library
+  // Initialize logging - should be called once at startup
   void initialize_logging();
 
-  // Create repositories - these functions return Arc<ExerciseRepository>
+  // Factory functions for creating repositories
   [Throws=WeightliftingError]
   ExerciseRepository create_exercise_repository(string db_path);
 

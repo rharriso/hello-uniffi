@@ -1,3 +1,10 @@
+//
+//  WeightliftingAppTests.swift
+//  WeightliftingAppTests
+//
+//  Created by Ross Harrison on 6/21/25.
+//
+
 import XCTest
 import os.log
 @testable import WeightliftingApp
@@ -28,7 +35,7 @@ final class WeightliftingAppTests: XCTestCase {
         logger.info("🧪 Testing in-memory repository creation")
 
         // Test that we can create an in-memory repository
-        let repo = try createInMemoryRepository()
+        let repo = try WeightliftingApp.createInMemoryRepository()
         XCTAssertNotNil(repo)
 
         logger.info("✅ In-memory repository creation test passed")
@@ -43,7 +50,7 @@ final class WeightliftingAppTests: XCTestCase {
         logger.info("📁 Using temporary database path: \(dbPath)")
 
         // Test creating a file-based repository
-        let repo = try createExerciseRepository(dbPath: dbPath)
+        let repo = try WeightliftingApp.createExerciseRepository(dbPath: dbPath)
         XCTAssertNotNil(repo)
 
         // Clean up
@@ -56,7 +63,7 @@ final class WeightliftingAppTests: XCTestCase {
     func testExerciseCreation() {
         logger.info("🧪 Testing exercise creation and validation")
 
-        let exercise = Exercise(
+        let exercise = WeightliftingApp.Exercise(
             id: "test-123",
             name: "Push-up",
             description: "Basic bodyweight exercise",
@@ -80,7 +87,7 @@ final class WeightliftingAppTests: XCTestCase {
     func testExerciseWithEquipment() {
         logger.info("🧪 Testing exercise creation with equipment")
 
-        let exercise = Exercise(
+        let exercise = WeightliftingApp.Exercise(
             id: "test-456",
             name: "Bench Press",
             description: "Upper body strength exercise",
@@ -102,7 +109,7 @@ final class WeightliftingAppTests: XCTestCase {
     func testAddAndGetExercise() throws {
         logger.info("🧪 Testing add and get exercise operations")
 
-        let exercise = Exercise(
+        let exercise = WeightliftingApp.Exercise(
             id: "test-add-get",
             name: "Squat",
             description: "Compound leg exercise",
@@ -155,7 +162,7 @@ final class WeightliftingAppTests: XCTestCase {
 
         // Add multiple exercises
         logger.info("➕ Adding multiple exercises")
-        let exercise1 = Exercise(
+        let exercise1 = WeightliftingApp.Exercise(
             id: "ex1",
             name: "Bench Press",
             description: "Upper body exercise",
@@ -164,7 +171,7 @@ final class WeightliftingAppTests: XCTestCase {
             difficultyLevel: 6
         )
 
-        let exercise2 = Exercise(
+        let exercise2 = WeightliftingApp.Exercise(
             id: "ex2",
             name: "Deadlift",
             description: "Full body exercise",
@@ -197,7 +204,7 @@ final class WeightliftingAppTests: XCTestCase {
     func testDeleteExercise() throws {
         logger.info("🧪 Testing delete exercise operation")
 
-        let exercise = Exercise(
+        let exercise = WeightliftingApp.Exercise(
             id: "test-delete",
             name: "Pull-up",
             description: "Upper body pulling exercise",
@@ -253,7 +260,7 @@ final class WeightliftingAppTests: XCTestCase {
         // 2. Add multiple exercises
         logger.info("📝 Creating sample exercise data")
         let sampleExercises = [
-            Exercise(
+            WeightliftingApp.Exercise(
                 id: "wf1",
                 name: "Push-ups",
                 description: "Bodyweight chest exercise",
@@ -261,7 +268,7 @@ final class WeightliftingAppTests: XCTestCase {
                 equipmentNeeded: nil,
                 difficultyLevel: 3
             ),
-            Exercise(
+            WeightliftingApp.Exercise(
                 id: "wf2",
                 name: "Squats",
                 description: "Bodyweight leg exercise",
@@ -269,7 +276,7 @@ final class WeightliftingAppTests: XCTestCase {
                 equipmentNeeded: nil,
                 difficultyLevel: 4
             ),
-            Exercise(
+            WeightliftingApp.Exercise(
                 id: "wf3",
                 name: "Deadlift",
                 description: "Heavy compound exercise",
@@ -333,7 +340,7 @@ final class WeightliftingAppTests: XCTestCase {
         }
 
         // Add an exercise and try to add again with same ID
-        let exercise = Exercise(
+        let exercise = WeightliftingApp.Exercise(
             id: "duplicate-test",
             name: "Test Exercise",
             description: nil,
@@ -362,10 +369,10 @@ final class WeightliftingAppTests: XCTestCase {
         // Test performance of adding many exercises
         measure {
             do {
-                let repo = try createInMemoryRepository()
+                let repo = try WeightliftingApp.createInMemoryRepository()
 
                 for i in 0..<100 {
-                    let exercise = Exercise(
+                    let exercise = WeightliftingApp.Exercise(
                         id: "perf-\(i)",
                         name: "Exercise \(i)",
                         description: "Performance test exercise \(i)",
@@ -390,7 +397,7 @@ final class WeightliftingAppTests: XCTestCase {
         // Add some exercises first
         logger.info("📝 Setting up data for performance test")
         for i in 0..<50 {
-            let exercise = Exercise(
+            let exercise = WeightliftingApp.Exercise(
                 id: "getall-\(i)",
                 name: "Exercise \(i)",
                 description: "Test exercise \(i)",

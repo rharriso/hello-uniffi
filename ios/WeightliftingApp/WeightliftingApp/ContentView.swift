@@ -1,3 +1,10 @@
+//
+//  ContentView.swift
+//  WeightliftingApp
+//
+//  Created by Ross Harrison on 6/21/25.
+//
+
 import SwiftUI
 import os.log
 

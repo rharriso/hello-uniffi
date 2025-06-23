@@ -1,0 +1,231 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project WeightliftingApp.xcodeproj -scheme WeightliftingApp -destination "platform=iOS Simulator,name=iPhone 16" build
+
+--- xcodebuild: WARNING: Using the first of multiple matching destinations:
+{ platform:iOS Simulator, arch:arm64, id:F5403FC5-2F07-4388-91A8-CE5F6B61ADDF, OS:18.5, name:iPhone 16 }
+{ platform:iOS Simulator, arch:x86_64, id:F5403FC5-2F07-4388-91A8-CE5F6B61ADDF, OS:18.5, name:iPhone 16 }
+ComputePackagePrebuildTargetDependencyGraph
+
+Prepare packages
+
+CreateBuildRequest
+
+SendProjectDescription
+
+CreateBuildOperation
+
+ComputeTargetDependencyGraph
+note: Building targets in dependency order
+note: Target dependency graph (1 target)
+    Target 'WeightliftingApp' in project 'WeightliftingApp' (no dependencies)
+
+GatherProvisioningInputs
+
+CreateBuildDescription
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk -x c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/usr/bin/actool --print-asset-tag-combinations --output-format xml1 /Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp/WeightliftingApp/Assets.xcassets
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/usr/bin/actool --version --output-format xml1
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc --version
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld -version_details
+
+Build description signature: 59933f87cc58a2221ca6823666106338
+Build description path: /Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/XCBuildData/59933f87cc58a2221ca6823666106338.xcbuilddata
+ClangStatCache /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk /Users/rossharrison/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator18.5-22F76-d5fc8ad4295d2ef488fb7d0f804ce0c4.sdkstatcache
+    cd /Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp/WeightliftingApp.xcodeproj
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk -o /Users/rossharrison/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator18.5-22F76-d5fc8ad4295d2ef488fb7d0f804ce0c4.sdkstatcache
+
+WriteAuxiliaryFile /Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/Objects-normal/arm64/WeightliftingApp.SwiftConstValuesFileList (in target 'WeightliftingApp' from project 'WeightliftingApp')
+    cd /Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp
+    write-file /Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/Objects-normal/arm64/WeightliftingApp.SwiftConstValuesFileList
+
+WriteAuxiliaryFile /Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/Objects-normal/arm64/WeightliftingApp.SwiftFileList (in target 'WeightliftingApp' from project 'WeightliftingApp')
+    cd /Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp
+    write-file /Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/Objects-normal/arm64/WeightliftingApp.SwiftFileList
+
+WriteAuxiliaryFile /Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/DerivedSources/Entitlements-Simulated.plist (in target 'WeightliftingApp' from project 'WeightliftingApp')
+    cd /Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp
+    write-file /Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/DerivedSources/Entitlements-Simulated.plist
+
+WriteAuxiliaryFile /Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/Objects-normal/arm64/WeightliftingApp.LinkFileList (in target 'WeightliftingApp' from project 'WeightliftingApp')
+    cd /Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp
+    write-file /Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/Objects-normal/arm64/WeightliftingApp.LinkFileList
+
+ProcessProductPackaging "" /Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/WeightliftingApp.app-Simulated.xcent (in target 'WeightliftingApp' from project 'WeightliftingApp')
+    cd /Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp
+    
+    Entitlements:
+    
+    {
+    "application-identifier" = "EP6Y2JY436.come.rharriso.WeightliftingApp";
+}
+    
+    builtin-productPackagingUtility -entitlements -format xml -o /Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/WeightliftingApp.app-Simulated.xcent
+
+ProcessProductPackagingDER /Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/WeightliftingApp.app-Simulated.xcent /Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/WeightliftingApp.app-Simulated.xcent.der (in target 'WeightliftingApp' from project 'WeightliftingApp')
+    cd /Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp
+    /usr/bin/derq query -f xml -i /Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/WeightliftingApp.app-Simulated.xcent -o /Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/WeightliftingApp.app-Simulated.xcent.der --raw
+
+Ld /Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Products/Debug-iphonesimulator/WeightliftingApp.app/__preview.dylib normal (in target 'WeightliftingApp' from project 'WeightliftingApp')
+    cd /Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-ios18.5-simulator -dynamiclib -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk -O0 -L/Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Products/Debug-iphonesimulator -L/Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp/WeightliftingApp -F/Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Products/Debug-iphonesimulator -install_name @rpath/WeightliftingApp.debug.dylib -dead_strip -rdynamic -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -Xlinker -debug_variant -Xlinker -dependency_info -Xlinker /Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/Objects-normal/arm64/WeightliftingApp_dependency_info.dat -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __entitlements -Xlinker /Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/WeightliftingApp.app-Simulated.xcent -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __ents_der -Xlinker /Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/WeightliftingApp.app-Simulated.xcent.der -Xlinker -no_adhoc_codesign -o /Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Products/Debug-iphonesimulator/WeightliftingApp.app/__preview.dylib
+
+ProcessInfoPlistFile /Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Products/Debug-iphonesimulator/WeightliftingApp.app/Info.plist /Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/empty-WeightliftingApp.plist (in target 'WeightliftingApp' from project 'WeightliftingApp')
+    cd /Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp
+    builtin-infoPlistUtility /Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/empty-WeightliftingApp.plist -producttype com.apple.product-type.application -genpkginfo /Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Products/Debug-iphonesimulator/WeightliftingApp.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -additionalcontentfile /Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/assetcatalog_generated_info.plist -o /Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Products/Debug-iphonesimulator/WeightliftingApp.app/Info.plist
+
+SwiftDriver WeightliftingApp normal arm64 com.apple.xcode.tools.swift.compiler (in target 'WeightliftingApp' from project 'WeightliftingApp')
+    cd /Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp
+    builtin-SwiftDriver -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name WeightliftingApp -Onone -enforce-exclusivity\=checked @/Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/Objects-normal/arm64/WeightliftingApp.SwiftFileList -DDEBUG -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk -target arm64-apple-ios18.5-simulator -g -module-cache-path /Users/rossharrison/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -profile-coverage-mapping -profile-generate -enable-testing -index-store-path /Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Index.noindex/DataStore -swift-version 5 -I /Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Products/Debug-iphonesimulator -F /Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Products/Debug-iphonesimulator -emit-localized-strings -emit-localized-strings-path /Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/Objects-normal/arm64 -c -j12 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/rossharrison/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator18.5-22F76-d5fc8ad4295d2ef488fb7d0f804ce0c4.sdkstatcache -output-file-map /Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/Objects-normal/arm64/WeightliftingApp-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/Objects-normal/arm64/WeightliftingApp.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/rossharrison/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/Objects-normal/arm64/WeightliftingApp_const_extract_protocols.json -Xcc -iquote -Xcc /Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/WeightliftingApp-generated-files.hmap -Xcc -I/Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/WeightliftingApp-own-target-headers.hmap -Xcc -I/Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/WeightliftingApp-all-target-headers.hmap -Xcc -iquote -Xcc /Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/WeightliftingApp-project-headers.hmap -Xcc -I/Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/DerivedSources-normal/arm64 -Xcc -I/Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/DerivedSources/arm64 -Xcc -I/Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/Objects-normal/arm64/WeightliftingApp-Swift.h -working-directory /Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp -experimental-emit-module-separately -disable-cmo
+
+SwiftEmitModule normal arm64 Emitting\ module\ for\ WeightliftingApp (in target 'WeightliftingApp' from project 'WeightliftingApp')
+
+EmitSwiftModule normal arm64 (in target 'WeightliftingApp' from project 'WeightliftingApp')
+    cd /Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp
+    
+/Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp/WeightliftingApp/weightlifting_core.swift:12:19: error: cannot find type 'RustBuffer' in scope
+private extension RustBuffer {
+                  ^~~~~~~~~~
+/Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp/WeightliftingApp/weightlifting_core.swift:32:19: error: cannot find type 'ForeignBytes' in scope
+private extension ForeignBytes {
+                  ^~~~~~~~~~~~
+/Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp/WeightliftingApp/weightlifting_core.swift:46:22: error: cannot find type 'RustBuffer' in scope
+    init(rustBuffer: RustBuffer) {
+                     ^~~~~~~~~~
+/Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp/WeightliftingApp/weightlifting_core.swift:176:72: error: cannot find type 'RustBuffer' in scope
+private protocol FfiConverterRustBuffer: FfiConverter where FfiType == RustBuffer {}
+                                                                       ^~~~~~~~~~
+/Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp/WeightliftingApp/weightlifting_core.swift:179:36: error: cannot find type 'RustBuffer' in scope
+    public static func lift(_ buf: RustBuffer) throws -> SwiftType {
+                                   ^~~~~~~~~~
+/Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp/WeightliftingApp/weightlifting_core.swift:189:53: error: cannot find type 'RustBuffer' in scope
+    public static func lower(_ value: SwiftType) -> RustBuffer {
+                                                    ^~~~~~~~~~
+/Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp/WeightliftingApp/weightlifting_core.swift:229:19: error: cannot find type 'RustCallStatus' in scope
+private extension RustCallStatus {
+                  ^~~~~~~~~~~~~~
+/Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp/WeightliftingApp/weightlifting_core.swift:242:60: error: cannot find type 'RustCallStatus' in scope
+private func rustCall<T>(_ callback: (UnsafeMutablePointer<RustCallStatus>) -> T) throws -> T {
+                                                           ^~~~~~~~~~~~~~
+/Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp/WeightliftingApp/weightlifting_core.swift:247:32: error: cannot find type 'RustBuffer' in scope
+    _ errorHandler: @escaping (RustBuffer) throws -> Error,
+                               ^~~~~~~~~~
+/Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp/WeightliftingApp/weightlifting_core.swift:248:39: error: cannot find type 'RustCallStatus' in scope
+    _ callback: (UnsafeMutablePointer<RustCallStatus>) -> T
+                                      ^~~~~~~~~~~~~~
+/Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp/WeightliftingApp/weightlifting_core.swift:254:39: error: cannot find type 'RustCallStatus' in scope
+    _ callback: (UnsafeMutablePointer<RustCallStatus>) -> T,
+                                      ^~~~~~~~~~~~~~
+/Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp/WeightliftingApp/weightlifting_core.swift:255:21: error: cannot find type 'RustBuffer' in scope
+    errorHandler: ((RustBuffer) throws -> Error)?
+                    ^~~~~~~~~~
+/Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp/WeightliftingApp/weightlifting_core.swift:265:17: error: cannot find type 'RustCallStatus' in scope
+    callStatus: RustCallStatus,
+                ^~~~~~~~~~~~~~
+/Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp/WeightliftingApp/weightlifting_core.swift:266:21: error: cannot find type 'RustBuffer' in scope
+    errorHandler: ((RustBuffer) throws -> Error)?
+                    ^~~~~~~~~~
+/Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp/WeightliftingApp/weightlifting_core.swift:337:25: error: cannot find type 'RustBuffer' in scope
+    typealias FfiType = RustBuffer
+                        ^~~~~~~~~~
+/Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp/WeightliftingApp/weightlifting_core.swift:339:38: error: cannot find type 'RustBuffer' in scope
+    public static func lift(_ value: RustBuffer) throws -> String {
+                                     ^~~~~~~~~~
+/Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp/WeightliftingApp/weightlifting_core.swift:350:50: error: cannot find type 'RustBuffer' in scope
+    public static func lower(_ value: String) -> RustBuffer {
+                                                 ^~~~~~~~~~
+/Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp/WeightliftingApp/weightlifting_core.swift:335:16: error: type 'FfiConverterString' does not conform to protocol 'FfiConverter'
+private struct FfiConverterString: FfiConverter {
+               ^
+/Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp/WeightliftingApp/weightlifting_core.swift:335:16: note: add stubs for conformance
+private struct FfiConverterString: FfiConverter {
+               ^
+/Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp/WeightliftingApp/weightlifting_core.swift:152:20: note: protocol requires nested type 'FfiType'
+    associatedtype FfiType
+                   ^
+/Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp/WeightliftingApp/weightlifting_core.swift:520:15: error: type 'FfiConverterTypeExercise' does not conform to protocol 'FfiConverter'
+public struct FfiConverterTypeExercise: FfiConverterRustBuffer {
+              ^
+/Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp/WeightliftingApp/weightlifting_core.swift:520:15: note: add stubs for conformance
+public struct FfiConverterTypeExercise: FfiConverterRustBuffer {
+              ^
+/Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp/WeightliftingApp/weightlifting_core.swift:152:20: note: protocol requires nested type 'FfiType'
+    associatedtype FfiType
+                   ^
+/Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp/WeightliftingApp/weightlifting_core.swift:153:20: note: protocol requires nested type 'SwiftType'
+    associatedtype SwiftType
+                   ^
+/Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp/WeightliftingApp/weightlifting_core.swift:542:50: error: cannot find type 'RustBuffer' in scope
+public func FfiConverterTypeExercise_lift(_ buf: RustBuffer) throws -> Exercise {
+                                                 ^~~~~~~~~~
+/Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp/WeightliftingApp/weightlifting_core.swift:546:66: error: cannot find type 'RustBuffer' in scope
+public func FfiConverterTypeExercise_lower(_ value: Exercise) -> RustBuffer {
+                                                                 ^~~~~~~~~~
+/Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp/WeightliftingApp/weightlifting_core.swift:555:57: error: cannot find type 'RustBuffer' in scope
+    fileprivate static func uniffiErrorHandler(_ error: RustBuffer) throws -> Error {
+                                                        ^~~~~~~~~~
+/Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp/WeightliftingApp/weightlifting_core.swift:560:15: error: type 'FfiConverterTypeWeightliftingError' does not conform to protocol 'FfiConverter'
+public struct FfiConverterTypeWeightliftingError: FfiConverterRustBuffer {
+              ^
+/Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp/WeightliftingApp/weightlifting_core.swift:560:15: note: add stubs for conformance
+public struct FfiConverterTypeWeightliftingError: FfiConverterRustBuffer {
+              ^
+/Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp/WeightliftingApp/weightlifting_core.swift:152:20: note: protocol requires nested type 'FfiType'
+    associatedtype FfiType
+                   ^
+/Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp/WeightliftingApp/weightlifting_core.swift:600:16: error: type 'FfiConverterOptionString' does not conform to protocol 'FfiConverter'
+private struct FfiConverterOptionString: FfiConverterRustBuffer {
+               ^
+/Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp/WeightliftingApp/weightlifting_core.swift:600:16: note: add stubs for conformance
+private struct FfiConverterOptionString: FfiConverterRustBuffer {
+               ^
+/Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp/WeightliftingApp/weightlifting_core.swift:152:20: note: protocol requires nested type 'FfiType'
+    associatedtype FfiType
+                   ^
+/Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp/WeightliftingApp/weightlifting_core.swift:621:16: error: type 'FfiConverterSequenceString' does not conform to protocol 'FfiConverter'
+private struct FfiConverterSequenceString: FfiConverterRustBuffer {
+               ^
+/Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp/WeightliftingApp/weightlifting_core.swift:621:16: note: add stubs for conformance
+private struct FfiConverterSequenceString: FfiConverterRustBuffer {
+               ^
+/Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp/WeightliftingApp/weightlifting_core.swift:152:20: note: protocol requires nested type 'FfiType'
+    associatedtype FfiType
+                   ^
+/Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp/WeightliftingApp/weightlifting_core.swift:643:16: error: type 'FfiConverterSequenceTypeExercise' does not conform to protocol 'FfiConverter'
+private struct FfiConverterSequenceTypeExercise: FfiConverterRustBuffer {
+               ^
+/Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp/WeightliftingApp/weightlifting_core.swift:643:16: note: add stubs for conformance
+private struct FfiConverterSequenceTypeExercise: FfiConverterRustBuffer {
+               ^
+/Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp/WeightliftingApp/weightlifting_core.swift:152:20: note: protocol requires nested type 'FfiType'
+    associatedtype FfiType
+                   ^
+
+Failed frontend command:
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swift-frontend -frontend -emit-module -experimental-skip-non-inlinable-function-bodies-without-types /Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp/WeightliftingApp/weightlifting_core.swift /Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp/WeightliftingApp/ContentView.swift /Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp/WeightliftingApp/WeightliftingAppApp.swift /Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/DerivedSources/GeneratedAssetSymbols.swift -target arm64-apple-ios18.5-simulator -Xllvm -aarch64-use-tbi -enable-objc-interop -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk -I /Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Products/Debug-iphonesimulator -F /Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Products/Debug-iphonesimulator -no-color-diagnostics -enable-testing -g -debug-info-format\=dwarf -dwarf-version\=5 -module-cache-path /Users/rossharrison/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -profile-generate -profile-coverage-mapping -swift-version 5 -enforce-exclusivity\=checked -Onone -D DEBUG -serialize-debugging-options -const-gather-protocols-file /Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/Objects-normal/arm64/WeightliftingApp_const_extract_protocols.json -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -empty-abi-descriptor -validate-clang-modules-once -clang-build-session-file /Users/rossharrison/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -working-directory -Xcc /Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp -resource-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift -enable-anonymous-context-mangled-names -file-compilation-dir /Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp -Xcc -ivfsstatcache -Xcc /Users/rossharrison/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator18.5-22F76-d5fc8ad4295d2ef488fb7d0f804ce0c4.sdkstatcache -Xcc -I/Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/swift-overrides.hmap -Xcc -iquote -Xcc /Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/WeightliftingApp-generated-files.hmap -Xcc -I/Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/WeightliftingApp-own-target-headers.hmap -Xcc -I/Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/WeightliftingApp-all-target-headers.hmap -Xcc -iquote -Xcc /Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/WeightliftingApp-project-headers.hmap -Xcc -I/Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/DerivedSources-normal/arm64 -Xcc -I/Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/DerivedSources/arm64 -Xcc -I/Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/DerivedSources -Xcc -DDEBUG\=1 -module-name WeightliftingApp -frontend-parseable-output -disable-clang-spi -target-sdk-version 18.5 -target-sdk-name iphonesimulator18.5 -external-plugin-path /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/swift/host/plugins\#/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/swift-plugin-server -external-plugin-path /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/local/lib/swift/host/plugins\#/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/swift-plugin-server -in-process-plugin-server-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/libSwiftInProcPluginServer.dylib -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/local/lib/swift/host/plugins -emit-module-doc-path /Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/Objects-normal/arm64/WeightliftingApp.swiftdoc -emit-module-source-info-path /Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/Objects-normal/arm64/WeightliftingApp.swiftsourceinfo -emit-objc-header-path /Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/Objects-normal/arm64/WeightliftingApp-Swift.h -serialize-diagnostics-path /Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/Objects-normal/arm64/WeightliftingApp-master-emit-module.dia -emit-dependencies-path /Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/Objects-normal/arm64/WeightliftingApp-master-emit-module.d -o /Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/Objects-normal/arm64/WeightliftingApp.swiftmodule -emit-abi-descriptor-path /Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Intermediates.noindex/WeightliftingApp.build/Debug-iphonesimulator/WeightliftingApp.build/Objects-normal/arm64/WeightliftingApp.abi.json
+SwiftCompile normal arm64 Compiling\ ContentView.swift /Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp/WeightliftingApp/ContentView.swift (in target 'WeightliftingApp' from project 'WeightliftingApp')
+SwiftCompile normal arm64 /Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp/WeightliftingApp/ContentView.swift (in target 'WeightliftingApp' from project 'WeightliftingApp')
+    cd /Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp
+    
+
+SwiftCompile normal arm64 Compiling\ weightlifting_core.swift /Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp/WeightliftingApp/weightlifting_core.swift (in target 'WeightliftingApp' from project 'WeightliftingApp')
+SwiftCompile normal arm64 /Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp/WeightliftingApp/weightlifting_core.swift (in target 'WeightliftingApp' from project 'WeightliftingApp')
+    cd /Users/rossharrison/Code/rust-core-lib-test/ios/WeightliftingApp
+    
+
+note: Removed stale file '/Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Products/Debug-iphonesimulator/WeightliftingApp.app/Frameworks'
+
+note: Removed stale file '/Users/rossharrison/Library/Developer/Xcode/DerivedData/WeightliftingApp-ctmrmiitzakzbogirwtyuglbckim/Build/Products/Debug-iphonesimulator/WeightliftingApp.app/PlugIns'
+
+** BUILD FAILED **
+
+
+The following build commands failed:
+	EmitSwiftModule normal arm64 (in target 'WeightliftingApp' from project 'WeightliftingApp')
+	SwiftEmitModule normal arm64 Emitting\ module\ for\ WeightliftingApp (in target 'WeightliftingApp' from project 'WeightliftingApp')
+	Building project WeightliftingApp with scheme WeightliftingApp
+(3 failures)

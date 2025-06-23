@@ -63,6 +63,22 @@ pub fn create_in_memory_repository() -> Result<Arc<ExerciseRepository>, Weightli
     }
 }
 
+// UniFFI-generated clone function for ExerciseRepository
+// This function is automatically called by UniFFI's Swift bindings
+#[no_mangle]
+pub extern "C" fn uniffi_weightlifting_core_fn_clone_exerciserepository(
+    ptr: *const std::ffi::c_void,
+    call_status: *mut uniffi::RustCallStatus,
+) -> *const std::ffi::c_void {
+    uniffi::rust_call(unsafe { &mut *call_status }, || {
+        let obj = unsafe { Arc::from_raw(ptr as *const ExerciseRepository) };
+        let cloned = Arc::clone(&obj);
+        // Don't drop the original Arc
+        std::mem::forget(obj);
+        Ok(Arc::into_raw(cloned) as *const std::ffi::c_void)
+    })
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
