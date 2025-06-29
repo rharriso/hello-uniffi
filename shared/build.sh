@@ -47,10 +47,14 @@ check_requirements() {
 setup_targets() {
     log_info "Setting up Rust targets..."
 
-    # iOS targets
-    rustup target add aarch64-apple-ios || log_warning "Failed to add aarch64-apple-ios target"
-    rustup target add x86_64-apple-ios || log_warning "Failed to add x86_64-apple-ios target"
-    rustup target add aarch64-apple-ios-sim || log_warning "Failed to add aarch64-apple-ios-sim target"
+    rustup target add aarch64-apple-ios
+    rustup target add aarch64-apple-ios-macabi
+    rustup target add aarch64-apple-ios-sim
+    rustup target add armv7s-apple-ios
+    rustup target add i386-apple-ios
+    rustup target add x86_64-apple-ios
+    rustup target add x86_64-apple-ios-macabi
+    cargo install cargo-lipo || log_error "Failed to install cargo-lipo"
 
     # Android targets
     rustup target add aarch64-linux-android || log_warning "Failed to add aarch64-linux-android target"
@@ -72,24 +76,8 @@ run_tests() {
 build_ios() {
     log_info "Building for iOS..."
 
-    # Build for different iOS architectures
-    cargo build --release --target aarch64-apple-ios
-    cargo build --release --target x86_64-apple-ios
-    cargo build --release --target aarch64-apple-ios-sim
-
-    # Create universal library if lipo is available
-    if command -v lipo &> /dev/null; then
-        log_info "Creating universal iOS library..."
-        mkdir -p target/universal-ios/release
-        lipo -create \
-            target/aarch64-apple-ios/release/libweightlifting_core.a \
-            target/x86_64-apple-ios/release/libweightlifting_core.a \
-            target/aarch64-apple-ios-sim/release/libweightlifting_core.a \
-            -output target/universal-ios/release/libweightlifting_core.a
-        log_success "Universal iOS library created"
-    else
-        log_warning "Skipping universal library creation (lipo not available)"
-    fi
+    # Build universal library for different iOS architectures
+    cargo lipo --release
 
     log_success "iOS build completed"
 }
@@ -119,18 +107,14 @@ generate_swift_bindings() {
 
     mkdir -p bindings/swift
 
-    # Use the first available iOS library for binding generation
-    LIBRARY_PATH=""
-    if [[ -f "target/universal-ios/release/libweightlifting_core.a" ]]; then
-        LIBRARY_PATH="target/universal-ios/release/libweightlifting_core.a"
-    elif [[ -f "target/aarch64-apple-ios/release/libweightlifting_core.a" ]]; then
-        LIBRARY_PATH="target/aarch64-apple-ios/release/libweightlifting_core.a"
-    else
-        log_error "No iOS library found for Swift binding generation"
+    # Check if UDL file exists
+    if [[ ! -f "src/weightlifting_core.udl" ]]; then
+        log_error "UDL file not found at src/weightlifting_core.udl"
         return 1
     fi
 
-    cargo run --bin uniffi-bindgen generate --library "$LIBRARY_PATH" --language swift --out-dir bindings/swift
+    # Generate Swift bindings using UDL file
+    uniffi-bindgen generate src/weightlifting_core.udl --language swift --out-dir bindings/swift
     log_success "Swift bindings generated in bindings/swift/"
 }
 
@@ -140,19 +124,68 @@ generate_kotlin_bindings() {
 
     mkdir -p bindings/kotlin
 
-    # Use the first available Android library for binding generation
-    LIBRARY_PATH=""
-    if [[ -f "target/aarch64-linux-android/release/libweightlifting_core.so" ]]; then
-        LIBRARY_PATH="target/aarch64-linux-android/release/libweightlifting_core.so"
-    elif [[ -f "target/x86_64-linux-android/release/libweightlifting_core.so" ]]; then
-        LIBRARY_PATH="target/x86_64-linux-android/release/libweightlifting_core.so"
-    else
-        log_error "No Android library found for Kotlin binding generation"
+    # Check if UDL file exists
+    if [[ ! -f "src/weightlifting_core.udl" ]]; then
+        log_error "UDL file not found at src/weightlifting_core.udl"
         return 1
     fi
 
-    cargo run --bin uniffi-bindgen generate --library "$LIBRARY_PATH" --language kotlin --out-dir bindings/kotlin
+    # Generate Kotlin bindings using UDL file
+    uniffi-bindgen generate src/weightlifting_core.udl --language kotlin --out-dir bindings/kotlin
     log_success "Kotlin bindings generated in bindings/kotlin/"
+}
+
+# iOS project integration - generate bindings and copy to iOS project
+ios_project_integration() {
+    log_info "Generating iOS bindings and integrating with iOS project..."
+
+    # First ensure we have iOS libraries built
+    if [[ ! -f "target/aarch64-apple-ios/release/libweightlifting_core.a" ]] && [[ ! -f "target/universal-ios/release/libweightlifting_core.a" ]]; then
+        log_info "iOS libraries not found, building them first..."
+        build_ios
+    fi
+
+    # Generate Swift bindings
+    generate_swift_bindings || {
+        log_error "Failed to generate Swift bindings"
+        return 1
+    }
+
+    # Create iOS project directory structure
+    IOS_PROJECT_DIR="../ios/WeightliftingApp/Shared"
+    log_info "Creating iOS project directory: $IOS_PROJECT_DIR"
+    mkdir -p "$IOS_PROJECT_DIR"
+
+    # Copy Swift bindings
+    log_info "Copying Swift bindings to iOS project..."
+    if [[ -d "bindings/swift" ]]; then
+        cp bindings/swift/* "$IOS_PROJECT_DIR/" 2>/dev/null || log_warning "Some Swift binding files may not have copied"
+    fi
+
+    # Copy iOS libraries
+    log_info "Copying iOS device library..."
+    if [[ -f "target/universal-ios/release/libweightlifting_core.a" ]]; then
+        cp target/universal-ios/release/libweightlifting_core.a "$IOS_PROJECT_DIR/libweightlifting_core_device.a"
+    elif [[ -f "target/aarch64-apple-ios/release/libweightlifting_core.a" ]]; then
+        cp target/aarch64-apple-ios/release/libweightlifting_core.a "$IOS_PROJECT_DIR/libweightlifting_core_device.a"
+    else
+        log_warning "No device library found"
+    fi
+
+    log_info "Copying iOS simulator library..."
+    if [[ -f "target/universal-ios/release/libweightlifting_core_sim.a" ]]; then
+        cp target/universal-ios/release/libweightlifting_core_sim.a "$IOS_PROJECT_DIR/libweightlifting_core_sim.a"
+    elif [[ -f "target/aarch64-apple-ios-sim/release/libweightlifting_core.a" ]]; then
+        cp target/aarch64-apple-ios-sim/release/libweightlifting_core.a "$IOS_PROJECT_DIR/libweightlifting_core_sim.a"
+    else
+        log_warning "No simulator library found"
+    fi
+
+    log_success "iOS bindings and libraries copied to $IOS_PROJECT_DIR"
+    log_info "Libraries available:"
+    [[ -f "$IOS_PROJECT_DIR/libweightlifting_core_device.a" ]] && log_info "  - Device library: libweightlifting_core_device.a"
+    [[ -f "$IOS_PROJECT_DIR/libweightlifting_core_sim.a" ]] && log_info "  - Simulator library: libweightlifting_core_sim.a"
+    log_info "Next: Configure Xcode project manually (see ../ios/INTEGRATION_GUIDE.md)"
 }
 
 # Print usage information
@@ -160,16 +193,17 @@ usage() {
     echo "Usage: $0 [OPTIONS]"
     echo ""
     echo "OPTIONS:"
-    echo "  -h, --help       Show this help message"
-    echo "  -s, --setup      Setup Rust targets only"
-    echo "  -t, --test       Run tests only"
-    echo "  -i, --ios        Build for iOS only"
-    echo "  -a, --android    Build for Android only"
-    echo "  -b, --bindings   Generate bindings only"
-    echo "  -q, --quick      Quick build (test + debug build)"
-    echo "  -c, --clean      Clean build artifacts"
-    echo "  --swift          Generate Swift bindings only"
-    echo "  --kotlin         Generate Kotlin bindings only"
+    echo "  -h, --help           Show this help message"
+    echo "  -s, --setup          Setup Rust targets only"
+    echo "  -t, --test           Run tests only"
+    echo "  -i, --ios            Build for iOS only"
+    echo "  -a, --android        Build for Android only"
+    echo "  -b, --bindings       Generate bindings only"
+    echo "  -q, --quick          Quick build (test + debug build)"
+    echo "  -c, --clean          Clean build artifacts"
+    echo "  --swift              Generate Swift bindings only"
+    echo "  --kotlin             Generate Kotlin bindings only"
+    echo "  --ios-bindings       Generate iOS bindings and integrate with project"
     echo ""
     echo "If no options are provided, runs the full build pipeline."
 }
@@ -217,6 +251,10 @@ main() {
             ;;
         --kotlin)
             generate_kotlin_bindings
+            ;;
+        --ios-bindings)
+            check_requirements
+            ios_project_integration
             ;;
         -q|--quick)
             check_requirements

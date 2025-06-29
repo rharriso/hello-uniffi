@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D9B260C62E08FDC200BA9A31 /* libweightlifting_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B260C12E08FDC200BA9A31 /* libweightlifting_core.a */; };
+		D91E8E1D2E11DC2A009F639C /* libweightlifting_core_device.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D91E8E1C2E11DC2A009F639C /* libweightlifting_core_device.a */; };
+		D91E8E1E2E11DC6F009F639C /* libweightlifting_core_device.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D91E8E1C2E11DC2A009F639C /* libweightlifting_core_device.a */; };
+		D91E8E1F2E11DC74009F639C /* libweightlifting_core_device.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D91E8E1C2E11DC2A009F639C /* libweightlifting_core_device.a */; };
 		D9B260C72E08FDC200BA9A31 /* weightlifting_core.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B260C22E08FDC200BA9A31 /* weightlifting_core.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,10 +31,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D91E8E1C2E11DC2A009F639C /* libweightlifting_core_device.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libweightlifting_core_device.a; sourceTree = "<group>"; };
 		D9703CB82E0678FF009D39BC /* WeightliftingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeightliftingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9703CC52E067900009D39BC /* WeightliftingAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeightliftingAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9703CCF2E067900009D39BC /* WeightliftingAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeightliftingAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D9B260C12E08FDC200BA9A31 /* libweightlifting_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libweightlifting_core.a; sourceTree = "<group>"; };
 		D9B260C22E08FDC200BA9A31 /* weightlifting_core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = weightlifting_core.swift; sourceTree = "<group>"; };
 		D9B260C32E08FDC200BA9A31 /* weightlifting_coreFFI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = weightlifting_coreFFI.h; sourceTree = "<group>"; };
 		D9B260C42E08FDC200BA9A31 /* weightlifting_coreFFI.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = weightlifting_coreFFI.modulemap; sourceTree = "<group>"; };
@@ -61,7 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D9B260C62E08FDC200BA9A31 /* libweightlifting_core.a in Frameworks */,
+				D91E8E1D2E11DC2A009F639C /* libweightlifting_core_device.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D91E8E1E2E11DC6F009F639C /* libweightlifting_core_device.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D91E8E1F2E11DC74009F639C /* libweightlifting_core_device.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,7 +118,7 @@
 		D9B260C52E08FDC200BA9A31 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				D9B260C12E08FDC200BA9A31 /* libweightlifting_core.a */,
+				D91E8E1C2E11DC2A009F639C /* libweightlifting_core_device.a */,
 				D9B260C22E08FDC200BA9A31 /* weightlifting_core.swift */,
 				D9B260C32E08FDC200BA9A31 /* weightlifting_coreFFI.h */,
 				D9B260C42E08FDC200BA9A31 /* weightlifting_coreFFI.modulemap */,

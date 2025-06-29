@@ -9,6 +9,8 @@ use models::Exercise;
 use repository::ExerciseRepository;
 use error::WeightliftingError;
 use log::{info, warn};
+#[cfg(test)]
+use log::debug;
 use std::sync::{Arc, Once};
 
 // UniFFI setup

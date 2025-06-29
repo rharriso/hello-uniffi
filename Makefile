@@ -18,9 +18,9 @@ help: ## Show this help message
 	@echo ""
 	@echo "$(YELLOW)iOS Workflow:$(RESET)"
 	@echo "  1. $(BLUE)make setup$(RESET)     - Install dependencies"
-	@echo "  2. $(BLUE)make ios-bindings$(RESET) - Generate iOS bindings"
-	@echo "  3. Configure Xcode manually (see ios/INTEGRATION_GUIDE.md)"
-	@echo "  4. $(BLUE)make test-ios$(RESET)  - Run iOS tests"
+	@echo "  2. $(BLUE)make build-ios$(RESET) - Build iOS libraries"
+	@echo "  3. $(BLUE)make test-ios$(RESET)  - Run iOS tests"
+	@echo "  4. Configure Xcode manually (see ios/INTEGRATION_GUIDE.md)"
 
 # Setup and installation
 .PHONY: setup
@@ -30,42 +30,22 @@ setup: ## Install development dependencies and Rust targets
 	@echo "$(GREEN)✅ Development environment ready!$(RESET)"
 
 # iOS targets
-.PHONY: ios-bindings
-ios-bindings: ## Generate iOS bindings and copy to project
-	@echo "$(BLUE)🔗 Generating iOS bindings...$(RESET)"
+.PHONY: build-ios
+build-ios: ## Build iOS libraries (device + simulator)
+	@echo "$(BLUE)🏗️ Building iOS libraries...$(RESET)"
+	cd shared && make build-ios
+	@echo "$(BLUE)🏗️ Generating iOS bindings...$(RESET)"
 	cd shared && make ios-bindings
-	@echo "$(GREEN)✅ iOS bindings generated!$(RESET)"
-
-.PHONY: build-ios-release
-build-ios-release: ## Build iOS release libraries (device + simulator)
-	@echo "$(BLUE)🏗️ Building iOS release...$(RESET)"
-	cd shared && make build-ios-release
-	@echo "$(GREEN)✅ iOS release build completed!$(RESET)"
-
-.PHONY: build-ios-test
-build-ios-test: ## Build iOS for testing (debug, simulator only)
-	@echo "$(BLUE)🏗️ Building iOS for testing...$(RESET)"
-	cd shared && make build-ios-test
-	@echo "$(GREEN)✅ iOS test build completed!$(RESET)"
+	@echo "$(GREEN)✅ iOS build completed!$(RESET)"
 
 # Android targets
-.PHONY: android-bindings
-android-bindings: ## Generate Android bindings
+.PHONY: build-android
+build-android: ## Build Android libraries
+	@echo "$(BLUE)🏗️ Building Android libraries...$(RESET)"
+	cd shared && make build-android
 	@echo "$(BLUE)🔗 Generating Android bindings...$(RESET)"
 	cd shared && make android-bindings
-	@echo "$(GREEN)✅ Android bindings generated!$(RESET)"
-
-.PHONY: build-android-release
-build-android-release: ## Build Android release libraries
-	@echo "$(BLUE)🏗️ Building Android release...$(RESET)"
-	cd shared && make build-android-release
-	@echo "$(GREEN)✅ Android release build completed!$(RESET)"
-
-.PHONY: build-android-test
-build-android-test: ## Build Android for testing
-	@echo "$(BLUE)🏗️ Building Android for testing...$(RESET)"
-	cd shared && make build-android-test
-	@echo "$(GREEN)✅ Android test build completed!$(RESET)"
+	@echo "$(GREEN)✅ Android build completed!$(RESET)"
 
 # Test targets
 .PHONY: test
@@ -79,7 +59,7 @@ test-rust: ## Run Rust tests
 	@echo "$(GREEN)✅ Rust tests passed!$(RESET)"
 
 .PHONY: test-ios
-test-ios: ios-bindings ## Run iOS tests (requires manual Xcode configuration)
+test-ios: build-ios ## Run iOS tests (requires manual Xcode configuration)
 	@echo "$(BLUE)📱 Running iOS tests...$(RESET)"
 	@echo "$(YELLOW)⚠️  IMPORTANT: Xcode project must be manually configured first!$(RESET)"
 	@echo "$(BLUE)📋 See ios/INTEGRATION_GUIDE.md for setup instructions$(RESET)"
@@ -101,13 +81,18 @@ build-release: ## Build release versions for all platforms
 
 # Development and maintenance
 .PHONY: clean
-clean: ## Clean all build artifacts
+clean: clean-ios ## Clean all build artifacts
 	@echo "$(BLUE)🧹 Cleaning build artifacts...$(RESET)"
 	cd shared && make clean
+	@echo "$(GREEN)✅ Clean completed!$(RESET)"
+
+.PHONY: clean-ios
+clean-ios: ## Clean iOS build artifacts
 	@echo "$(BLUE)🧹 Cleaning iOS project...$(RESET)"
 	cd ios && xcodebuild clean \
 		-project WeightliftingApp/WeightliftingApp.xcodeproj \
 		-scheme WeightliftingApp || echo "$(YELLOW)⚠️  iOS project clean skipped (project may not be configured)$(RESET)"
+	rm -rf ios/WeightliftingApp/Shared/*
 	@echo "$(GREEN)✅ Clean completed!$(RESET)"
 
 .PHONY: dev
