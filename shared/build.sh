@@ -37,7 +37,7 @@ check_requirements() {
     fi
 
     if ! command -v lipo &> /dev/null && [[ "$OSTYPE" == "darwin"* ]]; then
-        log_warning "lipo not found. iOS universal library creation will be skipped."
+        cargo install cargo-lipo || log_error "Failed to install cargo-lipo" && exit 1
     fi
 
     log_success "Requirements check completed"
@@ -54,7 +54,6 @@ setup_targets() {
     rustup target add i386-apple-ios
     rustup target add x86_64-apple-ios
     rustup target add x86_64-apple-ios-macabi
-    cargo install cargo-lipo || log_error "Failed to install cargo-lipo"
 
     # Android targets
     rustup target add aarch64-linux-android || log_warning "Failed to add aarch64-linux-android target"
@@ -76,8 +75,10 @@ run_tests() {
 build_ios() {
     log_info "Building for iOS..."
 
-    # Build universal library for different iOS architectures
-    cargo lipo --release
+    # Build for different iOS architectures
+    cargo build --release --target aarch64-apple-ios
+    cargo build --release --target aarch64-apple-ios-sim
+    cargo build --release --target x86_64-apple-ios
 
     log_success "iOS build completed"
 }
@@ -140,7 +141,7 @@ ios_project_integration() {
     log_info "Generating iOS bindings and integrating with iOS project..."
 
     # First ensure we have iOS libraries built
-    if [[ ! -f "target/aarch64-apple-ios/release/libweightlifting_core.a" ]] && [[ ! -f "target/universal-ios/release/libweightlifting_core.a" ]]; then
+    if [[ ! -f "target/aarch64-apple-ios/release/libweightlifting_core.a" ]] && [[ ! -f "target/aarch64-apple-ios-sim/release/libweightlifting_core.a" ]]; then
         log_info "iOS libraries not found, building them first..."
         build_ios
     fi
@@ -164,18 +165,15 @@ ios_project_integration() {
 
     # Copy iOS libraries
     log_info "Copying iOS device library..."
-    if [[ -f "target/universal-ios/release/libweightlifting_core.a" ]]; then
-        cp target/universal-ios/release/libweightlifting_core.a "$IOS_PROJECT_DIR/libweightlifting_core_device.a"
-    elif [[ -f "target/aarch64-apple-ios/release/libweightlifting_core.a" ]]; then
+    if [[ -f "target/aarch64-apple-ios/release/libweightlifting_core.a" ]]; then
         cp target/aarch64-apple-ios/release/libweightlifting_core.a "$IOS_PROJECT_DIR/libweightlifting_core_device.a"
     else
         log_warning "No device library found"
     fi
 
+    # Copy iOS simulator library
     log_info "Copying iOS simulator library..."
-    if [[ -f "target/universal-ios/release/libweightlifting_core_sim.a" ]]; then
-        cp target/universal-ios/release/libweightlifting_core_sim.a "$IOS_PROJECT_DIR/libweightlifting_core_sim.a"
-    elif [[ -f "target/aarch64-apple-ios-sim/release/libweightlifting_core.a" ]]; then
+    if [[ -f "target/aarch64-apple-ios-sim/release/libweightlifting_core.a" ]]; then
         cp target/aarch64-apple-ios-sim/release/libweightlifting_core.a "$IOS_PROJECT_DIR/libweightlifting_core_sim.a"
     else
         log_warning "No simulator library found"
@@ -183,8 +181,8 @@ ios_project_integration() {
 
     log_success "iOS bindings and libraries copied to $IOS_PROJECT_DIR"
     log_info "Libraries available:"
-    [[ -f "$IOS_PROJECT_DIR/libweightlifting_core_device.a" ]] && log_info "  - Device library: libweightlifting_core_device.a"
-    [[ -f "$IOS_PROJECT_DIR/libweightlifting_core_sim.a" ]] && log_info "  - Simulator library: libweightlifting_core_sim.a"
+    [[ -f "$IOS_PROJECT_DIR/libweightlifting_core_device.a" ]] && log_info "  - core library: libweightlifting_core_device.a"
+    [[ -f "$IOS_PROJECT_DIR/libweightlifting_core_sim.a" ]] && log_info "  - core library: libweightlifting_core_sim.a"
     log_info "Next: Configure Xcode project manually (see ../ios/INTEGRATION_GUIDE.md)"
 }
 

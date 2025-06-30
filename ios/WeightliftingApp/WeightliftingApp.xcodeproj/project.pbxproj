@@ -11,6 +11,10 @@
 		D91E8E1E2E11DC6F009F639C /* libweightlifting_core_device.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D91E8E1C2E11DC2A009F639C /* libweightlifting_core_device.a */; };
 		D91E8E1F2E11DC74009F639C /* libweightlifting_core_device.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D91E8E1C2E11DC2A009F639C /* libweightlifting_core_device.a */; };
 		D9B260C72E08FDC200BA9A31 /* weightlifting_core.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B260C22E08FDC200BA9A31 /* weightlifting_core.swift */; };
+		D9EAAF3A2E124401003CC42B /* weightlifting_core.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B260C22E08FDC200BA9A31 /* weightlifting_core.swift */; };
+		D9EAAF5C2E12466E003CC42B /* libweightlifting_core_sim.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D9EAAF5B2E12466E003CC42B /* libweightlifting_core_sim.a */; };
+		D9EAAF5D2E12466E003CC42B /* libweightlifting_core_sim.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D9EAAF5B2E12466E003CC42B /* libweightlifting_core_sim.a */; };
+		D9EAAF5E2E12466E003CC42B /* libweightlifting_core_sim.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D9EAAF5B2E12466E003CC42B /* libweightlifting_core_sim.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,6 +32,20 @@
 			remoteGlobalIDString = D9703CB72E0678FF009D39BC;
 			remoteInfo = WeightliftingApp;
 		};
+		D9EAAF452E12440D003CC42B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D9703CB02E0678FF009D39BC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D9703CB72E0678FF009D39BC;
+			remoteInfo = WeightliftingApp;
+		};
+		D9EAAF512E124419003CC42B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D9703CB02E0678FF009D39BC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D9703CB72E0678FF009D39BC;
+			remoteInfo = WeightliftingApp;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -38,21 +56,61 @@
 		D9B260C22E08FDC200BA9A31 /* weightlifting_core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = weightlifting_core.swift; sourceTree = "<group>"; };
 		D9B260C32E08FDC200BA9A31 /* weightlifting_coreFFI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = weightlifting_coreFFI.h; sourceTree = "<group>"; };
 		D9B260C42E08FDC200BA9A31 /* weightlifting_coreFFI.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = weightlifting_coreFFI.modulemap; sourceTree = "<group>"; };
+		D9EAAF412E124401003CC42B /* WeightliftingAppSim.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeightliftingAppSim.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D9EAAF4D2E12440D003CC42B /* WeightliftingAppTestsSim.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeightliftingAppTestsSim.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D9EAAF592E124419003CC42B /* WeightliftingAppUITestsSim.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeightliftingAppUITestsSim.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D9EAAF5B2E12466E003CC42B /* libweightlifting_core_sim.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libweightlifting_core_sim.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		D9EAAF422E124401003CC42B /* Exceptions for "WeightliftingApp" folder in "WeightliftingAppSim" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Assets.xcassets,
+				ContentView.swift,
+				WeightliftingAppApp.swift,
+			);
+			target = D9EAAF382E124401003CC42B /* WeightliftingAppSim */;
+		};
+		D9EAAF4E2E12440D003CC42B /* Exceptions for "WeightliftingAppTests" folder in "WeightliftingAppTestsSim" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				WeightliftingAppTests.swift,
+			);
+			target = D9EAAF432E12440D003CC42B /* WeightliftingAppTestsSim */;
+		};
+		D9EAAF5A2E124419003CC42B /* Exceptions for "WeightliftingAppUITests" folder in "WeightliftingAppUITestsSim" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				WeightliftingAppUITests.swift,
+				WeightliftingAppUITestsLaunchTests.swift,
+			);
+			target = D9EAAF4F2E124419003CC42B /* WeightliftingAppUITestsSim */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		D9703CBA2E0678FF009D39BC /* WeightliftingApp */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				D9EAAF422E124401003CC42B /* Exceptions for "WeightliftingApp" folder in "WeightliftingAppSim" target */,
+			);
 			path = WeightliftingApp;
 			sourceTree = "<group>";
 		};
 		D9703CC82E067900009D39BC /* WeightliftingAppTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				D9EAAF4E2E12440D003CC42B /* Exceptions for "WeightliftingAppTests" folder in "WeightliftingAppTestsSim" target */,
+			);
 			path = WeightliftingAppTests;
 			sourceTree = "<group>";
 		};
 		D9703CD22E067900009D39BC /* WeightliftingAppUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				D9EAAF5A2E124419003CC42B /* Exceptions for "WeightliftingAppUITests" folder in "WeightliftingAppUITestsSim" target */,
+			);
 			path = WeightliftingAppUITests;
 			sourceTree = "<group>";
 		};
@@ -83,6 +141,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D9EAAF3B2E124401003CC42B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D9EAAF5D2E12466E003CC42B /* libweightlifting_core_sim.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D9EAAF472E12440D003CC42B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D9EAAF5C2E12466E003CC42B /* libweightlifting_core_sim.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D9EAAF532E124419003CC42B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D9EAAF5E2E12466E003CC42B /* libweightlifting_core_sim.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -104,6 +186,9 @@
 				D9703CB82E0678FF009D39BC /* WeightliftingApp.app */,
 				D9703CC52E067900009D39BC /* WeightliftingAppTests.xctest */,
 				D9703CCF2E067900009D39BC /* WeightliftingAppUITests.xctest */,
+				D9EAAF412E124401003CC42B /* WeightliftingAppSim.app */,
+				D9EAAF4D2E12440D003CC42B /* WeightliftingAppTestsSim.xctest */,
+				D9EAAF592E124419003CC42B /* WeightliftingAppUITestsSim.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -118,6 +203,7 @@
 		D9B260C52E08FDC200BA9A31 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				D9EAAF5B2E12466E003CC42B /* libweightlifting_core_sim.a */,
 				D91E8E1C2E11DC2A009F639C /* libweightlifting_core_device.a */,
 				D9B260C22E08FDC200BA9A31 /* weightlifting_core.swift */,
 				D9B260C32E08FDC200BA9A31 /* weightlifting_coreFFI.h */,
@@ -197,6 +283,74 @@
 			productReference = D9703CCF2E067900009D39BC /* WeightliftingAppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		D9EAAF382E124401003CC42B /* WeightliftingAppSim */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D9EAAF3E2E124401003CC42B /* Build configuration list for PBXNativeTarget "WeightliftingAppSim" */;
+			buildPhases = (
+				D9EAAF392E124401003CC42B /* Sources */,
+				D9EAAF3B2E124401003CC42B /* Frameworks */,
+				D9EAAF3D2E124401003CC42B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				D9703CBA2E0678FF009D39BC /* WeightliftingApp */,
+			);
+			name = WeightliftingAppSim;
+			packageProductDependencies = (
+			);
+			productName = WeightliftingApp;
+			productReference = D9EAAF412E124401003CC42B /* WeightliftingAppSim.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D9EAAF432E12440D003CC42B /* WeightliftingAppTestsSim */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D9EAAF4A2E12440D003CC42B /* Build configuration list for PBXNativeTarget "WeightliftingAppTestsSim" */;
+			buildPhases = (
+				D9EAAF462E12440D003CC42B /* Sources */,
+				D9EAAF472E12440D003CC42B /* Frameworks */,
+				D9EAAF492E12440D003CC42B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D9EAAF442E12440D003CC42B /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				D9703CC82E067900009D39BC /* WeightliftingAppTests */,
+			);
+			name = WeightliftingAppTestsSim;
+			packageProductDependencies = (
+			);
+			productName = WeightliftingAppTests;
+			productReference = D9EAAF4D2E12440D003CC42B /* WeightliftingAppTestsSim.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D9EAAF4F2E124419003CC42B /* WeightliftingAppUITestsSim */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D9EAAF562E124419003CC42B /* Build configuration list for PBXNativeTarget "WeightliftingAppUITestsSim" */;
+			buildPhases = (
+				D9EAAF522E124419003CC42B /* Sources */,
+				D9EAAF532E124419003CC42B /* Frameworks */,
+				D9EAAF552E124419003CC42B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D9EAAF502E124419003CC42B /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				D9703CD22E067900009D39BC /* WeightliftingAppUITests */,
+			);
+			name = WeightliftingAppUITestsSim;
+			packageProductDependencies = (
+			);
+			productName = WeightliftingAppUITests;
+			productReference = D9EAAF592E124419003CC42B /* WeightliftingAppUITestsSim.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -237,6 +391,9 @@
 				D9703CB72E0678FF009D39BC /* WeightliftingApp */,
 				D9703CC42E067900009D39BC /* WeightliftingAppTests */,
 				D9703CCE2E067900009D39BC /* WeightliftingAppUITests */,
+				D9EAAF382E124401003CC42B /* WeightliftingAppSim */,
+				D9EAAF432E12440D003CC42B /* WeightliftingAppTestsSim */,
+				D9EAAF4F2E124419003CC42B /* WeightliftingAppUITestsSim */,
 			);
 		};
 /* End PBXProject section */
@@ -257,6 +414,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		D9703CCD2E067900009D39BC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D9EAAF3D2E124401003CC42B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D9EAAF492E12440D003CC42B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D9EAAF552E124419003CC42B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -288,6 +466,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D9EAAF392E124401003CC42B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D9EAAF3A2E124401003CC42B /* weightlifting_core.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D9EAAF462E12440D003CC42B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D9EAAF522E124419003CC42B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -300,6 +500,16 @@
 			isa = PBXTargetDependency;
 			target = D9703CB72E0678FF009D39BC /* WeightliftingApp */;
 			targetProxy = D9703CD02E067900009D39BC /* PBXContainerItemProxy */;
+		};
+		D9EAAF442E12440D003CC42B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D9703CB72E0678FF009D39BC /* WeightliftingApp */;
+			targetProxy = D9EAAF452E12440D003CC42B /* PBXContainerItemProxy */;
+		};
+		D9EAAF502E124419003CC42B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D9703CB72E0678FF009D39BC /* WeightliftingApp */;
+			targetProxy = D9EAAF512E124419003CC42B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -577,6 +787,160 @@
 			};
 			name = Release;
 		};
+		D9EAAF3F2E124401003CC42B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Shared",
+				);
+				"LIBRARY_SEARCH_PATHS[arch=*]" = "$(PROJECT_DIR)/Shared";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = come.rharriso.WeightliftingApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "WeightliftingApp/WeightliftingApp-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D9EAAF402E124401003CC42B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Shared",
+				);
+				"LIBRARY_SEARCH_PATHS[arch=*]" = "$(PROJECT_DIR)/Shared";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = come.rharriso.WeightliftingApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "WeightliftingApp/WeightliftingApp-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		D9EAAF4B2E12440D003CC42B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Shared",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = come.rharriso.WeightliftingAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "WeightliftingApp/WeightliftingApp-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WeightliftingApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WeightliftingApp";
+			};
+			name = Debug;
+		};
+		D9EAAF4C2E12440D003CC42B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Shared",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = come.rharriso.WeightliftingAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "WeightliftingApp/WeightliftingApp-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WeightliftingApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WeightliftingApp";
+			};
+			name = Release;
+		};
+		D9EAAF572E124419003CC42B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Shared",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = come.rharriso.WeightliftingAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "WeightliftingApp/WeightliftingApp-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = WeightliftingApp;
+			};
+			name = Debug;
+		};
+		D9EAAF582E124419003CC42B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Shared",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = come.rharriso.WeightliftingAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "WeightliftingApp/WeightliftingApp-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = WeightliftingApp;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -612,6 +976,33 @@
 			buildConfigurations = (
 				D9703CE02E067900009D39BC /* Debug */,
 				D9703CE12E067900009D39BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D9EAAF3E2E124401003CC42B /* Build configuration list for PBXNativeTarget "WeightliftingAppSim" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D9EAAF3F2E124401003CC42B /* Debug */,
+				D9EAAF402E124401003CC42B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D9EAAF4A2E12440D003CC42B /* Build configuration list for PBXNativeTarget "WeightliftingAppTestsSim" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D9EAAF4B2E12440D003CC42B /* Debug */,
+				D9EAAF4C2E12440D003CC42B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D9EAAF562E124419003CC42B /* Build configuration list for PBXNativeTarget "WeightliftingAppUITestsSim" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D9EAAF572E124419003CC42B /* Debug */,
+				D9EAAF582E124419003CC42B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

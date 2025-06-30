@@ -65,7 +65,7 @@ test-ios: build-ios ## Run iOS tests (requires manual Xcode configuration)
 	@echo "$(BLUE)📋 See ios/INTEGRATION_GUIDE.md for setup instructions$(RESET)"
 	cd ios && xcodebuild test \
 		-project WeightliftingApp/WeightliftingApp.xcodeproj \
-		-scheme WeightliftingApp \
+		-scheme WeightliftingAppSim \
 		-destination "platform=iOS Simulator,name=iPhone 16,OS=latest" \
 		CODE_SIGNING_ALLOWED=NO || \
 		echo "$(RED)❌ Tests failed - ensure Xcode project is configured per integration guide$(RESET)"

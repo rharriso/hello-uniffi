@@ -7,7 +7,45 @@
 		<key>WeightliftingApp.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>WeightliftingAppSim.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>D9703CB72E0678FF009D39BC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D9703CC42E067900009D39BC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D9703CCE2E067900009D39BC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D9EAAF382E124401003CC42B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D9EAAF432E12440D003CC42B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D9EAAF4F2E124419003CC42B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>
