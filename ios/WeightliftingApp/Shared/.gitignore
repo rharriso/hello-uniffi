@@ -1,5 +1,1 @@
-./*.h
-./*.swift
-./*.a
-./*.dylib
-./*.modulemap
+*
